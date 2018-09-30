@@ -1,0 +1,63 @@
+{% extends "./landing.html" %}
+
+{% block body %}
+    <div class="ui placeholder segment">
+        <div class="very relaxed stackable grid">
+            <div class="column">
+                    <form action="../login/" method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="chHX6LRDd2V5sHsD4XxSFq9Hn27fR7zplJA6UuMuS6aLLpVoaCdOOKpj0BJLJZhq">
+                        <div class="ui form">
+        
+                        <!-- USERNAME -->
+                        <div class="field">
+                            <label>Username</label>
+                            <div class="ui left icon input" type="username" name="username" placeholder="username">
+                                <i class="user icon"></i>
+                                <input type="username" name="username" placeholder="Username">
+                            </div>
+                        </div>
+        
+                        <!-- PASSWORD -->
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="ui left icon input" type="password" name="password" placeholder="Password">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <!-- CONFIRM PASSWORD -->
+                        <div class="field">
+                                <label>Confirm Password</label>
+                                <div class="ui left icon input" type="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                                    <i class="lock icon"></i>
+                                    <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                                </div>
+                        </div>
+
+                        {% if usernameTaken == True %}
+
+                        <div class="ui inverted red segment">
+                            <i class="exclamation triangle"></i>
+                            <p>Username already taken. Please choose another username.</p>
+                        </div>
+
+                        {% endif %}
+
+                        {% if passwordsDontMatch == True %}
+
+                        <div class="ui inverted red segment">
+                            <i class="exclamation triangle"></i>
+                            <p>Passwords don't match!</p>
+                        </div>
+
+                        {% endif %}
+        
+                        <button type="submit" class="ui blue submit button">Sign up</button>
+        
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

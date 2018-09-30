@@ -1,72 +1,59 @@
-{% load static %}
+{% extends "./landing.html" %}
 
-<!DOCTYPE html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static "semantic/dist/semantic.min.css" %}">
-        <link rel="stylesheet" type="text/css" href="{% static "login.css" %}">
-        <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous">
-            </script>
-        <script src="{% static "semantic/dist/semantic.min.js" %}">
-        </script>    
-    </head>
+{% block body %}
+    <div class="ui placeholder segment">
+        <div class="ui two column very relaxed stackable grid">
+        <div class="column">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="ui form">
 
-    <body>
-
-        <!-- LOGIN SCREEN -->
-
-        <div class="ui center aligned grid" id="full">
-            <div class="ui segment" id="wrapper">
-            <div class="ui padded text center aligned container segment">
-                <img src="{% static "assets/forum-blog-logo.png" %}" alt="No photo!">
-            </div>
-            <div class="ui padded text container inverted segment">
-                <div class="ui placeholder segment">
-                    <div class="ui two column very relaxed stackable grid">
-                    <div class="column">
-                        <form method="POST">
-                            {% csrf_token %}
-                            <div class="ui form">
-
-                            <!-- USERNAME -->
-                            <div class="field">
-                                <label>Username</label>
-                                <div class="ui left icon input" type="username" name="username" placeholder="username">
-                                    <i class="user icon"></i>
-                                    <input type="username" name="username" placeholder="Username">
-                                </div>
-                            </div>
-
-                            <!-- PASSWORD -->
-                            <div class="field">
-                                <label>Password</label>
-                                <div class="ui left icon input" type="password" name="password" placeholder="Password">
-                                    <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="ui blue submit button">Login</button>
-
-                            </div>
-                        </form>
-                    </div>
-                    <div class="middle aligned column">
-                        <div class="ui big button">
-                        <i class="signup icon"></i>
-                        Sign Up
-                        </div>
-                    </div>
-                    </div>
-                    <div class="ui vertical divider">
-                    Or
+                <!-- USERNAME -->
+                <div class="field">
+                    <label>Username</label>
+                    <div class="ui left icon input" type="username" name="username" placeholder="username">
+                        <i class="user icon"></i>
+                        <input type="username" name="username" placeholder="Username">
                     </div>
                 </div>
-            </div>
-            </div>
-        </div>
 
-    </body>
-</html>
+                <!-- PASSWORD -->
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui left icon input" type="password" name="password" placeholder="Password">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+
+                {% if loginSuccess == False %}
+
+                <div class="ui inverted red segment">
+                    <i class="exclamation triangle"></i>
+                    <p>Incorrect username or password.</p>
+                </div>
+
+                {% endif %}
+
+                <button type="submit" class="ui blue submit button">Login</button>
+
+                </div>
+            </form>
+        </div>
+        <div class="middle aligned column">
+            <a href="/login/signup">
+                <button class="ui big button">
+                <i class="signup icon"></i>
+                Sign Up
+                </button>
+            </a>
+        </div>
+        </div>
+        <div class="ui vertical divider">
+        Or
+        </div>
+    </div>
+{% endblock %}
+
+
+
